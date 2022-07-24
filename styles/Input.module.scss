@@ -3,7 +3,7 @@
   margin-bottom: 25px;
   label {
     position: absolute;
-    top: -10px;
+    top: -1rem;
     left: 0px;
     font-size: 16px;
     color: #fff;
@@ -17,16 +17,26 @@
     padding: 8px 0 5px 0;
     font-size: 16px;
     color: #fff;
-    :focus {
-      border: none;
+    &:focus {
       outline: none;
-      border-bottom: 1px solid #e74c3c;
+    }
+    &:focus ~ label {
+      top: -16px;
+      font-size: 12px;
     }
   }
 }
-
-.Input input:focus ~ label,
-.Input input:valid ~ label {
-  top: -20px;
+.valid input ~ label {
+  top: -16px;
   font-size: 12px;
+  color: green;
+}
+.invalid input ~ label {
+  color: red;
+}
+.valid input {
+  border-bottom: 1px solid green;
+}
+.invalid input {
+  border-bottom: 1px solid red;
 }
