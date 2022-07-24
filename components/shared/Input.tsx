@@ -31,23 +31,23 @@ export default function Input({
 
   const validateInput = () => {
     if (name === "fullName") {
-      const fullNameSize = theInput?.value?.toString().trim().length;
-      if (fullNameSize && fullNameSize >= 5) return setInputStateShortcut(true);
+      const fullNameSize = theInput.value?.trim().length;
+      if (fullNameSize >= 5) return setInputStateShortcut(true);
       else return setInputStateShortcut(false);
     }
     if (name === "password") {
-      const passwordTrimmed = theInput?.value.toString().trim();
+      const passwordTrimmed = theInput.value.trim();
       const passwordSize = passwordTrimmed?.length;
-      const containsNumber = /\d/.test(passwordTrimmed || "");
-      const containsLetter = /[a-zA-Z]/.test(passwordTrimmed || "");
-      if (passwordSize && passwordSize >= 8 && containsNumber && containsLetter)
+      const containsNumber = /\d/.test(passwordTrimmed);
+      const containsLetter = /[a-zA-Z]/.test(passwordTrimmed);
+      if (passwordSize >= 8 && containsNumber && containsLetter)
         return setInputStateShortcut(true);
       else return setInputStateShortcut(false);
     }
     if (name === "email") {
-      const emailTrimmed = theInput?.value.toString().trim();
-      const emailSize = emailTrimmed?.length;
-      if (emailSize && emailSize >= 1) return setInputStateShortcut(true);
+      const emailTrimmed = theInput.value.trim();
+      const isEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(emailTrimmed);
+      if (isEmail) return setInputStateShortcut(true);
       else return setInputStateShortcut(false);
     }
   };
