@@ -18,8 +18,7 @@ export default function Notification(props: {
             onClick={
               props.showOptionsHideForm as React.MouseEventHandler<HTMLAnchorElement>
             }>
-            {"===>"}
-            here
+            HERE
           </a>
         )}
       </div>

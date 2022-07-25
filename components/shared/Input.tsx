@@ -1,6 +1,7 @@
 import { InputInterface } from "@/interfaces/InputInterface";
 import classes from "@/styles/Input.module.scss";
 import { useEffect } from "react";
+import { validateInput } from "../../lib/validation";
 
 export default function Input({
   name,
@@ -18,7 +19,7 @@ export default function Input({
   setInputState: (input: InputInterface) => void;
 }) {
   useEffect(() => {
-    validateInput();
+    validateInput(name, theInput, setInputStateShortcut);
   }, [theInput?.value]);
 
   const setInputStateShortcut = (valid: boolean) => {
@@ -27,29 +28,6 @@ export default function Input({
       ...prevState,
       valid,
     }));
-  };
-
-  const validateInput = () => {
-    if (name === "fullName") {
-      const fullNameSize = theInput.value?.trim().length;
-      if (fullNameSize >= 5) return setInputStateShortcut(true);
-      else return setInputStateShortcut(false);
-    }
-    if (name === "password") {
-      const passwordTrimmed = theInput.value.trim();
-      const passwordSize = passwordTrimmed?.length;
-      const containsNumber = /\d/.test(passwordTrimmed);
-      const containsLetter = /[a-zA-Z]/.test(passwordTrimmed);
-      if (passwordSize >= 8 && containsNumber && containsLetter)
-        return setInputStateShortcut(true);
-      else return setInputStateShortcut(false);
-    }
-    if (name === "email") {
-      const emailTrimmed = theInput.value.trim();
-      const isEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(emailTrimmed);
-      if (isEmail) return setInputStateShortcut(true);
-      else return setInputStateShortcut(false);
-    }
   };
 
   const classesInput =
@@ -72,7 +50,7 @@ export default function Input({
             ...prevState,
             value: e.target.value,
           }));
-          validateInput();
+          validateInput(name, theInput, setInputStateShortcut);
         }}
       />
       <label htmlFor={name}>{children}</label>

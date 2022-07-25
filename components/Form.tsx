@@ -18,26 +18,12 @@ export default function Form(props: {
   setShowForm: (x: boolean) => void;
 }) {
   const {
-    showForm,
-    formType,
-    setNotification,
-    showNotification,
-    showOptionsHideForm,
-    setShowOptions,
-    setShowForm,
+    showForm, formType, setNotification, showNotification,
+    showOptionsHideForm, setShowOptions, setShowForm,
   } = props;
-  const [fullName, setFullName] = useState({
-    value: "",
-    valid: false,
-  } as InputInterface);
-  const [password, setPassword] = useState({
-    value: "",
-    valid: false,
-  } as InputInterface);
-  const [email, setEmail] = useState({
-    value: "",
-    valid: false,
-  } as InputInterface);
+  const [fullName, setFullName] = useState({ value: "", valid: false } as InputInterface);
+  const [password, setPassword] = useState({ value: "", valid: false } as InputInterface);
+  const [email, setEmail] = useState({ value: "", valid: false } as InputInterface) ;
 
   const submit = (event: React.BaseSyntheticEvent) => {
     event.preventDefault();
@@ -60,11 +46,7 @@ export default function Form(props: {
   };
 
   const register = () => {
-    const data = {
-      email: email.value,
-      password: password.value,
-      fullName: fullName.value,
-    };
+    const data = {email: email.value,password: password.value,fullName: fullName.value};
     axios
       .post(`${serverUrl}/register`, data)
       .then(({ data }: { data: { message: string } }) => {

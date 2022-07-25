@@ -9,8 +9,14 @@ export default function Options(props: {
   if (!showOptions) return null;
   return (
     <div className={classes.Options}>
-      <Button onclick={() => hideOptionsShowForm("Register")}>Register</Button>
-      <Button onclick={() => hideOptionsShowForm("Login")}>Login</Button>
+      <Button
+        testId='registerBtn'
+        onclick={() => hideOptionsShowForm("Register")}>
+        Register
+      </Button>
+      <Button testId='loginBtn' onclick={() => hideOptionsShowForm("Login")}>
+        Login
+      </Button>
     </div>
   );
 }

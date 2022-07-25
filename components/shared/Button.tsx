@@ -3,13 +3,19 @@ export default function Button({
   children,
   onclick,
   type = "button",
+  testId,
 }: {
   children?: string;
   onclick?: any;
   type?: any;
+  testId?: string;
 }) {
   return (
-    <button type={type} onClick={onclick} className={classes.Button}>
+    <button
+      type={type}
+      onClick={onclick}
+      className={classes.Button}
+      data-testid={testId}>
       {children}
     </button>
   );
